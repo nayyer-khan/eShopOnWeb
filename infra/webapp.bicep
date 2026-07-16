@@ -25,6 +25,7 @@ resource appService 'Microsoft.Web/sites@2022-09-01' = {
     serverFarmId: appServicePlan.id
     siteConfig: {
       netFrameworkVersion: 'v8.0'    // ✅ Windows .NET runtime
+      use32BitWorkerProcess: true    //  CRITICAL: Required for F1 Free Tier Windows plans!
       appSettings: [
         {
           name: 'ASPNETCORE_ENVIRONMENT'
