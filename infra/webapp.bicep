@@ -4,15 +4,18 @@ param location string = resourceGroup().location
 
 var appServicePlanName = toLower('AppServicePlan-${webAppName}')
 
-// App Service Plan - Windows F1 Free Tier
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   name: appServicePlanName
   location: location
-  properties: {
-    reserved: false           // ✅ Windows
-  }
   sku: {
-    name: sku                 // ✅ F1 Free
+    name: 'F1'
+    tier: 'Free'
+    size: 'F1'
+    capacity: 1
+  }
+  kind: 'app'
+  properties: {
+    reserved: false
   }
 }
 
